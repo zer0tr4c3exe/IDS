@@ -119,11 +119,13 @@ text
 - Administrator/root privileges
 
 ### Dependencies
+```cmd
 colorama>=0.4.6
 psutil>=5.9.0
+```
 
-text
 
+### OS COMPATIBILITY:
 ### Windows
 ```cmd
 git clone https://github.com/zer0tr4c3exe/IDS.git

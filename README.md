@@ -129,16 +129,16 @@ psutil>=5.9.0
 ### Windows
 ```cmd
 git clone https://github.com/zer0tr4c3exe/IDS.git
-cdd IDS
+cd IDS
 pip install colorama psutil
-python ids.py
+python IDS.py
 ```
 ### Linux / macOS
 ```cmd
 git clone https://github.com/zer0tr4c3exe/IDS.git
-cdd IDS
+cd IDS
 pip3 install colorama psutil
-sudo python3 ids.py
+sudo python3 IDS.py
 ```
 ### Configuration
 config.json Structure

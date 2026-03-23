@@ -31,15 +31,17 @@ A lightweight, cross-platform network and host-based intrusion detection system 
 
 ## Installation
 
-### Linux / macOS
+### Linux / macOS / Windows
 
 ```bash
 # Install Python dependencies
 pip install colorama psutil
 
 # Clone repository
-git clone https://github.com/yourusername/ids.git
-cd ids
+git clone https://github.com/zer0tr4c3.exe/IDS.git
+cd IDS
 
-# Run with sudo
-sudo python ids.py
+# Run with sudo (Linux)
+sudo python IDS.py
+# Windows
+python IDS.py

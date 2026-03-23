@@ -25,6 +25,7 @@ Network and host-based intrusion detection system written in Python. Monitors ne
 │ └──────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
 
+text
 
 ## Components
 
@@ -115,22 +116,36 @@ Network and host-based intrusion detection system written in Python. Monitors ne
 
 ### Prerequisites
 - Python 3.6+
-
-- ### Dependencies
-- colorama>=0.4.6
-  psutil>=5.9.0
-
-  
-### Windows
-```cmd
-pip install colorama psutil
-python IDS.py
-```
-### Linux /macOS
-pip3 install colorama psutil
-sudo python3 IDS.py
-
-
 - Administrator/root privileges
 
 ### Dependencies
+colorama>=0.4.6
+psutil>=5.9.0
+
+text
+
+### Windows
+```cmd
+pip install colorama psutil
+python ids.py
+```
+### Linux / macOS
+```cmd
+bash
+pip3 install colorama psutil
+sudo python3 ids.py
+```
+### Configuration
+config.json Structure
+json
+{
+    "port_scan_threshold": 100,
+    "syn_flood_threshold": 500,
+    "udp_flood_threshold": 500,
+    "icmp_flood_threshold": 200,
+    "time_window": 10,
+    "whitelist": ["127.0.0.1"],
+    "auto_block": false,
+    "db_file": "ids.db",
+    "log_file": "ids.log"
+}

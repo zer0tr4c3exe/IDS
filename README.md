@@ -1,47 +1,136 @@
-# Intrusion Detection System (IDS)
+# Intrusion Detection System
 
-A lightweight, cross-platform network and host-based intrusion detection system written in Python. Detects common network attacks and suspicious system activity with minimal dependencies.
+## Overview
+Network and host-based intrusion detection system written in Python. Monitors network traffic and system activity for malicious patterns.
 
-## Features
+## Architecture
+┌─────────────────────────────────────────────────────────────────┐
+│ IDS Core │
+├─────────────────────────────────────────────────────────────────┤
+│ │
+│ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ │
+│ │ Packet │ │ Host │ │ Alert │ │
+│ │ Capture │ │ Monitor │ │ Manager │ │
+│ └──────┬───────┘ └──────┬───────┘ └──────┬───────┘ │
+│ │ │ │ │
+│ ▼ ▼ ▼ │
+│ ┌──────────────────────────────────────────────────────┐ │
+│ │ SQLite Database │ │
+│ │ - alerts table │ │
+│ │ - attacks table │ │
+│ └──────────────────────────────────────────────────────┘ │
+│ │
+│ ┌──────────────────────────────────────────────────────┐ │
+│ │ Configuration (JSON) │ │
+│ └──────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
 
-- **Network Attack Detection**
-  - SYN Flood attacks
-  - UDP Flood attacks
-  - ICMP Flood attacks
-  - Port scanning
-  - Real-time packet capture
 
-- **Host-Based Detection**
-  - File integrity monitoring (critical system files)
-  - Suspicious process detection
-  - System resource monitoring
+## Components
 
-- **Management Features**
-  - SQLite database for logging
-  - Configurable thresholds
-  - Export reports
-  - Color-coded console output
-  - Persistent configuration
+### Packet Capture Module
+- Raw socket packet capture (requires root/admin)
+- IP/TCP/UDP/ICMP protocol parsing
+- SYN flood detection
+- UDP flood detection
+- ICMP flood detection
+- Port scan detection
+- Configurable thresholds
+- Threaded processing
 
-## Requirements
+### Host Monitor Module
+- File integrity monitoring (SHA-256)
+- Critical file tracking
+- Suspicious process detection
+- Process name pattern matching
+- Command line inspection
+- Optional psutil integration
 
-- Python 3.6+
-- Administrator/root privileges (required for packet capture)
-- Optional: psutil (for enhanced process monitoring)
+### Alert Manager Module
+- Queue-based alert processing
+- Severity classification
+- Console output with color coding
+- Log file persistence
+- Database storage
+
+### Database Module
+- SQLite backend
+- Alert storage with timestamps
+- Attack statistics
+- Historical query support
+- Report generation
+
+### Configuration Module
+- JSON configuration file
+- Runtime modification
+- Threshold tuning
+- Whitelist management
+- Persistent settings
+
+## Detection Methods
+
+### SYN Flood Detection
+- Monitors TCP SYN packets
+- Threshold: 500 packets per time window
+- Alert severity: CRITICAL
+- Source tracking per IP
+
+### UDP Flood Detection
+- Monitors UDP packet rate
+- Threshold: 500 packets per time window
+- Alert severity: CRITICAL
+- Destination port tracking
+
+### ICMP Flood Detection
+- Monitors ICMP echo requests
+- Threshold: 200 packets per time window
+- Alert severity: HIGH
+- Ping flood detection
+
+### Port Scan Detection
+- Tracks unique destination ports
+- Threshold: 100 ports per time window
+- Alert severity: HIGH
+- Source IP tracking
+- Time window: 10 seconds
+
+### File Integrity Monitoring
+- SHA-256 hash comparison
+- Monitored files:
+  - Windows: hosts, SAM
+  - Linux: passwd, shadow, hosts
+- Check interval: 60 seconds
+- Alert on hash mismatch
+
+### Process Monitoring
+- Process name scanning
+- Suspicious pattern detection:
+  - netcat, ncat, telnet
+  - mimikatz, procdump
+  - powershell -enc
+- Command line inspection
+- Check interval: 10 seconds
 
 ## Installation
 
-### Linux / macOS / Windows
+### Prerequisites
+- Python 3.6+
 
-```bash
-# Install Python dependencies
+- ### Dependencies
+- colorama>=0.4.6
+  psutil>=5.9.0
+
+  
+### Windows
+```cmd
 pip install colorama psutil
-
-# Clone repository
-git clone https://github.com/zer0tr4c3.exe/IDS.git
-cd IDS
-
-# Run with sudo (Linux)
-sudo python IDS.py
-# Windows
 python IDS.py
+```
+### Linux /macOS
+pip3 install colorama psutil
+sudo python3 IDS.py
+
+
+- Administrator/root privileges
+
+### Dependencies

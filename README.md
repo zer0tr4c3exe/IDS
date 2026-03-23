@@ -126,12 +126,15 @@ text
 
 ### Windows
 ```cmd
+git clone https://github.com/zer0tr4c3exe/IDS.git
+cdd IDS
 pip install colorama psutil
 python ids.py
 ```
 ### Linux / macOS
 ```cmd
-bash
+git clone https://github.com/zer0tr4c3exe/IDS.git
+cdd IDS
 pip3 install colorama psutil
 sudo python3 ids.py
 ```

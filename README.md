@@ -25,8 +25,7 @@ Network and host-based intrusion detection system written in Python. Monitors ne
 │ └──────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
 
-text
-
+![Image Name](./image.png)
 ## Components
 
 ### Packet Capture Module
